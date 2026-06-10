@@ -1,34 +1,76 @@
+```json
 {
   "notify_on": "always",
-  "subnets": [
+  "labs": [
     {
-      "name": "automation-pool-196",
-      "cidr": "10.196.4.0/23",
-      "description": "Automation pool covering 10.196.4.x and 10.196.5.x",
-      "scan_mode": "full_subnet",
-      "records": []
+      "lab_name": "BGL12-2-VAYU-LAB",
+      "subnets": [
+        {
+          "name": "automation-pool-196",
+          "cidr": "10.196.4.0/23"
+        },
+        {
+          "name": "automation-pool-196-6",
+          "cidr": "10.196.6.0/24"
+        },
+        {
+          "name": "lab-pool-78-85",
+          "cidr": "10.78.85.0/24"
+        },
+        {
+          "name": "lab-pool-78-27",
+          "cidr": "10.78.27.0/24"
+        }
+      ]
     },
+
     {
-      "name": "automation-pool-196-6",
-      "cidr": "10.196.6.0/24",
-      "description": "Automation pool 10.196.6.x",
-      "scan_mode": "full_subnet",
-      "records": []
+      "lab_name": "BGL11-3-PRITHVI-LAB",
+      "subnets": [
+        {
+          "name": "lab-78-98",
+          "cidr": "10.78.98.0/24"
+        },
+        {
+          "name": "lab-104-122",
+          "cidr": "10.104.122.0/24"
+        }
+      ]
     },
+
     {
-      "name": "lab-pool-78-85",
-      "cidr": "10.78.85.0/24",
-      "description": "Lab pool 10.78.85.x",
-      "scan_mode": "full_subnet",
-      "records": []
-    },
-    {
-      "name": "lab-pool-78-27",
-      "cidr": "10.78.27.0/24",
-      "description": "Lab pool 10.78.27.x",
-      "scan_mode": "full_subnet",
-      "records": []
+      "lab_name": "BGL11-4-Test-Automation-LAB",
+      "subnets": [
+        {
+          "name": "lab-127-109",
+          "cidr": "10.127.109.0/24"
+        },
+        {
+          "name": "lab-225-82",
+          "cidr": "10.225.82.0/24"
+        },
+        {
+          "name": "lab-106-180",
+          "cidr": "10.106.180.0/24"
+        },
+        {
+          "name": "lab-64-65",
+          "cidr": "10.64.65.0/25"
+        },
+        {
+          "name": "lab-64-73",
+          "cidr": "10.64.73.0/25"
+        },
+        {
+          "name": "lab-105-189",
+          "cidr": "10.105.189.0/24"
+        },
+        {
+          "name": "lab-106-181",
+          "cidr": "10.106.181.0/24"
+        }
+      ]
     }
-  ],
-  "_future_subnets_placeholder": "Add 10 more subnet objects here using the same format when ready."
+  ]
 }
+```
