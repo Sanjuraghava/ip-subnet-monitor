@@ -2,24 +2,41 @@ pipeline {
   agent any
 
   parameters {
-    booleanParam(name: 'DRY_RUN', defaultValue: true, description: 'Preview report without sending Webex notification')
-    string(name: 'PING_TIMEOUT_MS', defaultValue: '1000', description: 'Ping timeout per host in milliseconds')
-    string(name: 'WORKERS', defaultValue: '128', description: 'Parallel ping workers')
+    booleanParam(
+      name: 'DRY_RUN',
+      defaultValue: true,
+      description: 'Preview report without sending Webex notification'
+    )
+
+    string(
+      name: 'PING_TIMEOUT_MS',
+      defaultValue: '1000',
+      description: 'Ping timeout per host in milliseconds'
+    )
+
+    string(
+      name: 'WORKERS',
+      defaultValue: '128',
+      description: 'Parallel ping workers'
+    )
   }
 
   stages {
+
     stage('Dry-run scan') {
       when {
         expression { params.DRY_RUN }
       }
+
       steps {
-        sh '''
+        sh """
           chmod +x scripts/ip_subnet_monitor/run_ip_subnet_check.sh
+
           ./scripts/ip_subnet_monitor/run_ip_subnet_check.sh \
-            --timeout-ms "${PING_TIMEOUT_MS}" \
-            --workers "${WORKERS}" \
+            --timeout-ms ${params.PING_TIMEOUT_MS} \
+            --workers ${params.WORKERS} \
             --dry-run
-        '''
+        """
       }
     }
 
@@ -27,17 +44,20 @@ pipeline {
       when {
         expression { !params.DRY_RUN }
       }
+
       steps {
         withCredentials([
           string(credentialsId: 'webex-bot-token', variable: 'WEBEX_BOT_TOKEN'),
           string(credentialsId: 'webex-room-id', variable: 'WEBEX_ROOM_ID')
         ]) {
-          sh '''
+
+          sh """
             chmod +x scripts/ip_subnet_monitor/run_ip_subnet_check.sh
+
             ./scripts/ip_subnet_monitor/run_ip_subnet_check.sh \
-              --timeout-ms "${PING_TIMEOUT_MS}" \
-              --workers "${WORKERS}"
-          '''
+              --timeout-ms ${params.PING_TIMEOUT_MS} \
+              --workers ${params.WORKERS}
+          """
         }
       }
     }
