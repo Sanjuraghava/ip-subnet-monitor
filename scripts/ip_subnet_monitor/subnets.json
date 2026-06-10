@@ -1,7 +1,7 @@
 
 {
   "notify_on": "always",
-  "labs": [
+  "subnets": [
     {
       "lab_name": "BGL12-2-VAYU-LAB",
       "subnets": [
